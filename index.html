@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco3R - Edukasi Pengolahan Sampah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-dark: #0a4f4f;
+            --primary: #0d6e6e;
+            --light: #d6ccb5;
+            --accent: #f5c361;
+            --white: #ffffff;
+            --gray: #f8f9fa;
+            --dark-text: #2d3436;
+            --card-bg: #ffffff;
+            --footer-bg: #0a3c3c;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER YANG DIPERBAIKI */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            height: 70px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--accent), #f7d694);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* HAMBURGER MENU YANG DIPERBAIKI */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        /* HERO SECTION YANG DIPERBAIKI */
+        .hero {
+            background: linear-gradient(rgba(10, 79, 79, 0.85), rgba(13, 110, 110, 0.9)), url('sm.png') center/cover no-repeat;
+            color: var(--white);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23f5c361' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .welcome-section {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .datetime {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .waste-management {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .waste-management h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .waste-management h3 i {
+            color: var(--accent);
+        }
+
+        .management-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: var(--primary-dark);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), #f7d694);
+            color: var(--primary-dark);
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 195, 97, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245, 195, 97, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: var(--primary-dark);
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent), #f7d694);
+            margin: 15px auto;
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .principles {
+            background-color: var(--gray);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .principle-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            top: 0;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card-content {
+            padding: 0 2rem 2rem;
+        }
+
+        .card-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .products {
+            background-color: var(--light);
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230d6e6e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            display: block;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            color: var(--white);
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .slider-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            opacity: 1;
+            transform: scale(1.2);
+            background-color: var(--accent);
+        }
+
+        .tips {
+            background-color: var(--white);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(145deg, #f5f5f5, #ffffff);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tip-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+
+        .tip-card i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--footer-bg) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-links i {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 1rem;
+            color: var(--light);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* RESPONSIVE STYLES YANG DIPERBAIKI */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0;
+            }
+            
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            .welcome-section h2 {
+                font-size: 2rem;
+            }
+            
+            .waste-management h3 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .slide img {
+                height: 350px;
+            }
+            
+            /* NAVIGASI MOBILE YANG DIPERBAIKI */
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+                transition: all 0.4s ease;
+                z-index: 999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 2.5rem;
+                padding: 2rem;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1.4rem;
+                padding: 0.8rem 1.5rem;
+                display: block;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--accent);
+                transform: translateX(10px);
+            }
+            
+            nav a::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header {
+                padding: 0.5rem 1rem;
+                height: 60px;
+            }
+            
+            .logo-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 1.1rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text span {
+                font-size: 0.65rem;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .welcome-section p {
+                font-size: 1rem;
+            }
+            
+            .waste-management h3 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .principles-grid, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+            
+            .slide-content {
+                padding: 1.5rem;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            nav a {
+                font-size: 1.2rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Eco3R</h1>
+                    <span>Reduce, Reuse, Recycle</span>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#principles">Prinsip 3R</a></li>
+                    <li><a href="#products">Produk Daur Ulang</a></li>
+                    <li><a href="#tips">Tips & Edukasi</a></li>
+                    <li><a href="#footer">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="welcome-section">
+                <h2>Selamat Datang di Eco3R</h2>
+                <p>Mari bersama-sama kita wujudkan lingkungan yang lebih bersih dan sehat dengan mengelola sampah secara bijak. Setiap tindakan kecil kita hari ini akan memberikan dampak besar bagi masa depan bumi.</p>
+                <div class="datetime">
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="current-date"></span>
+                </div>
+                <a href="#principles" class="btn">Mulai Pelajari</a>
+            </div>
+            
+            <div class="waste-management">
+                <h3><i class="fas fa-seedling"></i> Pengolahan Sampah Organik dan Anorganik</h3>
+                <div class="management-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Apa itu sampah ?</h4>
+                            <p align="justify">Sampah adalah sisa dari aktivitas manusia atau alam yang sudah tidak terpakai lagi. Jika tidak dikelola dengan baik, sampah dapat menimbulkan pencemaran, penyakit, dan kerusakan lingkungan. Oleh karena itu, sangat penting memahami jenis-jenis sampah dan cara pengolahannya..</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Jenis Sampah</h4>
+                            <p align="justify">1. Sampah Organik Sampah yang bisa terurai secara alami (biodegradable).<br>Contoh: sisa makanan, daun kering, kulit buah, sayuran, rumput..</p>
+                            <br>
+                            <p align="justify">2. Sampah Anorganik
+                            Sampah yang sulit terurai secara alami (non-biodegradable). Contoh: plastik, kaleng, botol kaca, styrofoam, logam.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Daur Ulang Sampah Anorganik</h4>
+                            <p>Kumpulkan sampah anorganik seperti plastik, kertas, dan logam untuk didaur ulang.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Kurangi Penggunaan Plastik</h4>
+                            <p>Gunakan tas belanja reusable dan kurangi penggunaan plastik sekali pakai.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles" id="principles">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prinsip 3R dalam Pengolahan Sampah</h2>
+                <p>Mengurangi dampak lingkungan dengan menerapkan prinsip dasar pengelolaan sampah</p>
+            </div>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-minus-circle"></i>
+                        </div>
+                        <h3>Reduce (Mengurangi)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Reduce berarti Mengurangi penggunaan barang sekali pakai, seperti plastik belanja, serta memilih produk yang lebih tahan lama..</p>
+                    </div>
+                </div>
+                <div class="principle-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-redo-alt"></i>
+                        </div>
+                        <h3>Reuse (Menggunakan Kembali)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Reuse berarti menggunakan kembali barang-barang yang masih layak pakai. Daripada membuang barang, kita dapat mencari cara kreatif untuk memberi kehidupan baru pada barang-barang tersebut.</p>
+                    </div>
+                </div>
+                <div class="principle-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Recycle (Mendaur Ulang)</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Recycle berarti mendaur ulang barang-barang yang sudah tidak terpakai menjadi produk baru. Proses ini mengubah sampah menjadi bahan baku untuk membuat produk baru yang bermanfaat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Produk Hasil Daur Ulang</h2>
+                <p>Kreativitas mengubah sampah menjadi barang bernilai dan bermanfaat</p>
+            </div>
+            <div class="slider-container">
+                <div class="slider" id="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27a3d13cda60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Tas dari Kemasan Plastik">
+                        <div class="slide-content">
+                            <h3>Tas dari Kemasan Plastik</h3>
+                            <p>Tas cantik ini dibuat dari kemasan plastik bekas yang didaur ulang dengan kreatif.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="jam.jpg" alt="Jam Dinding Dari Motherboard Bekas">
+                        <div class="slide-content">
+                            <h3>Furnitur dari Palet Kayu Bekas</h3>
+                            <p>Furnitur unik dan ramah lingkungan dibuat dari palet kayu bekas yang didaur ulang.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1611270629569-8b357cb3082c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Pot Tanaman dari Botol Plastik">
+                        <div class="slide-content">
+                            <h3>Pot Tanaman dari Botol Plastik</h3>
+                            <p>Botol plastik bekas diubah menjadi pot tanaman yang colorful dan fungsional.</p>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Kerajinan dari Kertas Daur Ulang">
+                        <div class="slide-content">
+                            <h3>Kerajinan dari Kertas Daur Ulang</h3>
+                            <p>Kertas bekas diolah kembali menjadi berbagai kerajinan tangan yang bernilai seni.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav" id="slider-nav">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tips" id="tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tips & Edukasi Pengolahan Sampah</h2>
+                <p>Praktik sederhana yang dapat dilakukan sehari-hari untuk mengurangi sampah</p>
+            </div>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3><i class="fas fa-seedling"></i> Pisahkan Sampah Organik dan Anorganik</h3>
+                    <p>Memisahkan sampah organik dan anorganik sejak dari rumah memudahkan proses daur ulang dan pengomposan.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-shopping-bag"></i> Bawa Tas Belanja Sendiri</h3>
+                    <p>Mengurangi penggunaan kantong plastik dengan membawa tas belanja sendiri ketika berbelanja.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-trash-restore"></i> Manfaatkan Sampah Organik untuk Kompos</h3>
+                    <p>Sampah organik seperti sisa makanan dan dedaunan dapat diolah menjadi kompos untuk menyuburkan tanaman.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-wine-bottle"></i> Gunakan Kembali Botol dan Wadah</h3>
+                    <p>Botol dan wadah bekas dapat digunakan kembali untuk berbagai keperluan seperti tempat penyimpanan atau pot tanaman.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-lightbulb"></i> Kreatif dengan Barang Bekas</h3>
+                    <p>Gunakan kreativitas untuk mengubah barang bekas menjadi karya seni atau barang yang memiliki nilai guna.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-hand-holding-water"></i> Kurangi Penggunaan Air Kemasan</h3>
+                    <p>Mengurangi konsumsi air minum dalam kemasan plastik dengan menggunakan botol minum yang dapat diisi ulang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Eco3R</h3>
+                <p>Website edukasi untuk mempromosikan pengolahan sampah dengan prinsip Reduce, Reuse, Recycle demi kelestarian lingkungan.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                    <li><a href="#principles"><i class="fas fa-chevron-right"></i> Prinsip 3R</a></li>
+                    <li><a href="#products"><i class="fas fa-chevron-right"></i> Produk Daur Ulang</a></li>
+                    <li><a href="#tips"><i class="fas fa-chevron-right"></i> Tips & Edukasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Dokumentasi</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Panduan Daur Ulang</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Video Tutorial</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Galeri Foto</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Artikel</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak & Rating</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Beri Rating</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Hubungi Kami</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Kebijakan Privasi</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Eco3R - Rizky Mustafa Afrino - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('slider');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+            const slideCount = document.querySelectorAll('.slide').length;
+            let slideInterval;
+            
+            // Auto slide
+            function startSlider() {
+                slideInterval = setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    updateSlider();
+                }, 5000);
+            }
+            
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update active dot
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    clearInterval(slideInterval);
+                    currentSlide = index;
+                    updateSlider();
+                    startSlider();
+                });
+            });
+            
+            // Start the slider
+            startSlider();
+            
+            // Touch swipe for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slider.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideInterval);
+            }, false);
+            
+            slider.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                startSlider();
+            }, false);
+            
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) {
+                    // Swipe left - next slide
+                    currentSlide = (currentSlide + 1) % slideCount;
+                }
+                if (touchEndX > touchStartX + 50) {
+                    // Swipe right - previous slide
+                    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                }
+                updateSlider();
+            }
+            
+            // Mobile menu toggle
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.getElementById('nav');
+            const body = document.body;
+            
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                nav.classList.toggle('active');
+                
+                // Toggle icon between hamburger and close
+                const icon = hamburger.querySelector('i');
+                if (nav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    // Prevent body scroll ketika menu terbuka
+                    body.style.overflow = 'hidden';
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (nav.classList.contains('active') && 
+                    !nav.contains(e.target) && 
+                    e.target !== hamburger && 
+                    !hamburger.contains(e.target)) {
+                    nav.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    nav.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.style.overflow = 'auto';
+                });
+            });
+            
+            // Update date and time
+            function updateDateTime() {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', options);
+            }
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000); // Update every minute
+        });
+    </script>
+</body>
+</html>
